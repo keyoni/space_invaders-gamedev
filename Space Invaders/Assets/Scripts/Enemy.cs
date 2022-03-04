@@ -1,12 +1,22 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class Enemy: MonoBehaviour
 {
-    // Start is called before the first frame update
+    private Animator enemyAnimator;
+    private static readonly int Death = Animator.StringToHash("Death");
+
+    private void Start()
+    {
+        enemyAnimator = GetComponent<Animator>();
+    }
+
+    //-----------------------------------------------------------------------------
     void OnCollisionEnter2D(Collision2D collision)
     {
-      Debug.Log("Ouch!");
+        // todo - trigger death animation
+        enemyAnimator.SetTrigger(Death);
+        Destroy(collision.gameObject); // destroy bullet
+        Debug.Log("Ouch!");
     }
 }
