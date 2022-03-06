@@ -18,18 +18,30 @@ public class Bullet : MonoBehaviour
     private void Fire()
     {
         GetComponent<Rigidbody2D>().velocity = Vector2.up * speed;
-        //Debug.Log("Wwweeeeee");
     }
     
     void OnCollisionEnter2D(Collision2D collision)
     {
+        String hit = collision.collider.tag;
         
-        // todo - trigger death animation on enemy death action
+        // todo - move trigger death animation on enemy death action
         //enemyAnimator.SetTrigger(Death);
   
-        Debug.Log($"Ouch! Said {collision.collider.tag} ");
-                                                                
-        EnemyDeath?.Invoke(collision.collider.tag);
+        Debug.Log($"Ouch! Said {hit} ");
+        if (hit != "Player")
+        {
+            EnemyDeath?.Invoke(collision.collider.tag);
+        }
+        else if(hit == "Player")
+        {
+            // todo - player death action
+        }
+        else
+        {
+            
+            // todo - barrier hit
+        }
+
         Destroy(collision.gameObject); 
         Destroy(gameObject);
     }
