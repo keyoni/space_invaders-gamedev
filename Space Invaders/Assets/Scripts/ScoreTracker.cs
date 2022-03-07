@@ -7,6 +7,7 @@ using UnityEngine;
 public class ScoreTracker : MonoBehaviour
 {
     private int _currentScore = 0;
+    private int _currentKills = 0;
 
     public TextMeshProUGUI score;
     // Start is called before the first frame update
@@ -44,4 +45,6 @@ public class ScoreTracker : MonoBehaviour
         }
         score.text = _currentScore.ToString("0000");
     }
+    
+    // Use 
 }

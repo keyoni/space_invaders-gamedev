@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7741656114240745824}
   - component: {fileID: 8997318791746796194}
   - component: {fileID: 4170603782493460694}
+  - component: {fileID: -6667189743471330951}
   m_Layer: 0
   m_Name: Enemy-Huge
   m_TagString: Huge
@@ -124,3 +125,15 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &-6667189743471330951
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6789807276042294309}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8becac9e7bbfa23499f39c51d983b014, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

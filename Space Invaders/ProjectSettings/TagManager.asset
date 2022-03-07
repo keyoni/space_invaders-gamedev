@@ -8,6 +8,7 @@ TagManager:
   - Large
   - Mid
   - Small
+  - Bullet
   layers:
   - Default
   - TransparentFX
