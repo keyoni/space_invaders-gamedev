@@ -7,7 +7,7 @@ public class Bullet : MonoBehaviour
 {
     public float speed = 5;
     public static event Action<String> EnemyDeath;
-
+    public static event Action<GameObject> BarrierHit;
     //-----------------------------------------------------------------------------
     void Start()
     {
@@ -28,21 +28,23 @@ public class Bullet : MonoBehaviour
         //enemyAnimator.SetTrigger(Death);
   
         Debug.Log($"Ouch! Said {hit} ");
-        if (hit != "Player")
+        if(!collision.collider.CompareTag("Barrier"))
         {
-            EnemyDeath?.Invoke(collision.collider.name);
-        }
-        else if(hit == "Player")
-        {
-            // todo - player death action
-        }
-        else
-        {
-            
-            // todo - barrier hit
+
+            if (hit != "Player")
+            {
+                EnemyDeath?.Invoke(collision.collider.name);
+            }
+            else if (hit == "Player")
+            {
+                // todo - player death action
+            }
+
+            Destroy(collision.gameObject);
+            Destroy(gameObject);
+          
         }
 
-        Destroy(collision.gameObject); 
-        Destroy(gameObject);
+
     }
 }

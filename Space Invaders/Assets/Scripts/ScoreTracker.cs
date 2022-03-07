@@ -27,24 +27,26 @@ public class ScoreTracker : MonoBehaviour
 
     public void AddScore(String enemyType)
     {
-        switch (enemyType)
+        Debug.Log(enemyType);
+        if (enemyType.Contains("Small")) 
         {
-            case "Small":
-                _currentScore += 10;
-                break;
-            case "Mid":
-                _currentScore += 20;
-                break;
-            case "Large":
-                _currentScore += 30;
-                break;
-            case "Huge":
-                int randomNum = UnityEngine.Random.Range(200, 400);
-                randomNum -= randomNum % 10;
-                _currentScore += randomNum;
-                break;
-                
+            _currentScore += 10;
+        } 
+        else if (enemyType.Contains("Mid"))
+        {
+            _currentScore += 20;
         }
+        else if (enemyType.Contains("Large"))
+        {
+            _currentScore += 30;
+        }
+        else if (enemyType.Contains("Huge"))
+        {
+            int randomNum = UnityEngine.Random.Range(200, 400);
+            randomNum -= randomNum % 10;
+            _currentScore += randomNum;
+        }
+
         score.text = _currentScore.ToString("0000");
     }
     
