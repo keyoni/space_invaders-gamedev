@@ -11,12 +11,9 @@ public class Boundary : MonoBehaviour
     {
         Debug.Log("*****WE HIT THE BOUND!!!!!!!!!");
         
-        if (!col.CompareTag("Untagged") )
+        if (col.CompareTag("Enemy"))
         {
-            if (!col.CompareTag("Bullet"))
-            {
-                BoundHit?.Invoke();
-            }
+            BoundHit?.Invoke();
         }
 
     }

@@ -9,6 +9,8 @@ TagManager:
   - Mid
   - Small
   - Bullet
+  - Placeholder
+  - Enemy
   layers:
   - Default
   - TransparentFX

@@ -1,16 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class EnemyBlock : MonoBehaviour
 {
-    public float timerMax = 2f;
+    public float timerMax = 0.5f;
+    public float speedIncrease = 0.2f;
     private float _timer;
 
     private float _xMove = 0.5f;
-
-    private float _yMove = 0;
+    private float _yMove;
 
     public GameObject enemySmallPrefab;
     public GameObject enemyMidPrefab;
@@ -18,27 +16,33 @@ public class EnemyBlock : MonoBehaviour
     public GameObject enemyHugePrefab;
 
     public GameObject rowPlaceHolder;
-    public GameObject parentEnemy;
+
+    [FormerlySerializedAs("_leftPlaceholder")] public GameObject leftPlaceholder;
+    [FormerlySerializedAs("_rightPlaceholder")] public GameObject rightPlaceholder;
+    private float _hugeEnemySpeed;
+
 
     public int numberOfColumns = 10;
-    private bool down = false;
-    
-    
+    private bool _down;
+
+
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         EnemySpawn();
         Boundary.BoundHit += DirectionSwitch;
+        ScoreTracker.KillCountHit += SpawnHugeEnemy;
+        Bullet.EnemyDeath += SpeedUp;
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         BlockMove();
-        if (down)
+        if (_down)
         {
             _yMove = 0;
-            down = false;
+            _down = false;
         }
     }
 
@@ -51,8 +55,8 @@ public class EnemyBlock : MonoBehaviour
         else
         {
             if (_yMove < 0)
-                down = true;
-            
+                _down = true;
+
             transform.Translate(new Vector3(_xMove, _yMove, 0));
             _timer = timerMax;
         }
@@ -60,10 +64,7 @@ public class EnemyBlock : MonoBehaviour
 
     public void EnemySpawn()
     {
-        for (int i = 0; i < 4; i++)
-        {
-            EnemySpawnRow(i);
-        }
+        for (var i = 0; i < 4; i++) EnemySpawnRow(i);
     }
 
     public void EnemySpawnRow(int type)
@@ -71,49 +72,80 @@ public class EnemyBlock : MonoBehaviour
         switch (type)
         {
             case 0:
-            for (int i = 0; i < numberOfColumns; i++)
-            {
-                Vector3 space = new Vector3(i + (i+1), 0,0);
-                GameObject enemy = Instantiate(enemyLargePrefab, rowPlaceHolder.transform.position + space,
-                    Quaternion.identity);
-                enemy.transform.SetParent(transform);
-            }
-            break;
-            case 1:
-                for (int i = 0; i < numberOfColumns; i++)
+                for (var i = 0; i < numberOfColumns; i++)
                 {
-                    Vector3 space = new Vector3(i + (i+1), -2,0);
-                    GameObject enemy = Instantiate(enemyMidPrefab, rowPlaceHolder.transform.position + space,
+                    var space = new Vector3(i + i + 1, 0, 0);
+                    var enemy = Instantiate(enemyLargePrefab, rowPlaceHolder.transform.position + space,
                         Quaternion.identity);
                     enemy.transform.SetParent(transform);
                 }
+
+                break;
+            case 1:
+                for (var i = 0; i < numberOfColumns; i++)
+                {
+                    var space = new Vector3(i + i + 1, -2, 0);
+                    var enemy = Instantiate(enemyMidPrefab, rowPlaceHolder.transform.position + space,
+                        Quaternion.identity);
+                    enemy.transform.SetParent(transform);
+                }
+
                 break;
             case 2:
-                for (int i = 0; i < numberOfColumns; i++)
+                for (var i = 0; i < numberOfColumns; i++)
                 {
-                    Vector3 space = new Vector3(i + (i+1), -4,0);
-                    GameObject enemy = Instantiate(enemySmallPrefab, rowPlaceHolder.transform.position + space,
+                    var space = new Vector3(i + i + 1, -4, 0);
+                    var enemy = Instantiate(enemySmallPrefab, rowPlaceHolder.transform.position + space,
                         Quaternion.identity);
                     enemy.transform.SetParent(transform);
                 }
+
                 break;
             case 3:
-                for (int i = 0; i < numberOfColumns; i++)
+                for (var i = 0; i < numberOfColumns; i++)
                 {
-                    Vector3 space = new Vector3(i + (i+1), -6,0);
-                    GameObject enemy = Instantiate(enemySmallPrefab, rowPlaceHolder.transform.position + space,
+                    var space = new Vector3(i + i + 1, -6, 0);
+                    var enemy = Instantiate(enemySmallPrefab, rowPlaceHolder.transform.position + space,
                         Quaternion.identity);
                     enemy.transform.SetParent(transform);
                 }
-                break;
-        
-        }
 
-       
-    } 
+                break;
+        }
+    }
+
     private void DirectionSwitch()
     {
         _xMove = -_xMove;
         _yMove = -0.5f;
+    }
+
+    private void SpawnHugeEnemy()
+    {
+        var placeholder = Random.Range(0, 1);
+
+        GameObject hugeEnemyShip;
+        if (placeholder == 1)
+        {
+            hugeEnemyShip = Instantiate(enemyHugePrefab, leftPlaceholder.transform.position + Vector3.right,
+                Quaternion.identity);
+            hugeEnemyShip.GetComponent<HugeEnemy>().SetDirection(1);
+        }
+        else
+        {
+            hugeEnemyShip = Instantiate(enemyHugePrefab, rightPlaceholder.transform.position + Vector3.left, 
+                Quaternion.identity);
+            hugeEnemyShip.GetComponent<HugeEnemy>().SetDirection(-1);
+        }
+
+        hugeEnemyShip.GetComponent<HugeEnemy>().speed += _hugeEnemySpeed;
+        hugeEnemyShip.GetComponent<HugeEnemy>().SetIsVisible(true);
+    }
+
+    //Increase speed everytime anu enemy dies
+    private void SpeedUp(string enemyType)
+    {
+        _xMove += speedIncrease;
+        _hugeEnemySpeed += speedIncrease;
     }
 }

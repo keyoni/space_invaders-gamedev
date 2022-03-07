@@ -22,7 +22,7 @@ public class Bullet : MonoBehaviour
     
     void OnCollisionEnter2D(Collision2D collision)
     {
-        String hit = collision.collider.tag;
+        String hit = collision.collider.name;
         
         // todo - move trigger death animation on enemy death action
         //enemyAnimator.SetTrigger(Death);
@@ -30,7 +30,7 @@ public class Bullet : MonoBehaviour
         Debug.Log($"Ouch! Said {hit} ");
         if (hit != "Player")
         {
-            EnemyDeath?.Invoke(collision.collider.tag);
+            EnemyDeath?.Invoke(collision.collider.name);
         }
         else if(hit == "Player")
         {

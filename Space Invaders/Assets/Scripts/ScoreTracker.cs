@@ -10,11 +10,13 @@ public class ScoreTracker : MonoBehaviour
     private int _currentKills = 0;
 
     public TextMeshProUGUI score;
+
+    public static event Action KillCountHit;
     // Start is called before the first frame update
     void Start()
     {
         Bullet.EnemyDeath += AddScore;
-      
+        Bullet.EnemyDeath += EnemyKillsUpdate;
     }
 
     // Update is called once per frame
@@ -46,5 +48,13 @@ public class ScoreTracker : MonoBehaviour
         score.text = _currentScore.ToString("0000");
     }
     
-    // Use 
+    // Keeps track of how many enemies killed, if divisible by a certain number, spawn huge 
+    private void EnemyKillsUpdate(String enemyType)
+    {
+        _currentKills += 1;
+        if (_currentKills % 7 == 0)
+        {
+            KillCountHit?.Invoke();
+        }
+    }
 }

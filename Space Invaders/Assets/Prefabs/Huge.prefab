@@ -11,10 +11,11 @@ GameObject:
   - component: {fileID: 7082433427328345805}
   - component: {fileID: 7741656114240745824}
   - component: {fileID: 8997318791746796194}
+  - component: {fileID: 277032728642497707}
   - component: {fileID: 4170603782493460694}
-  - component: {fileID: -6667189743471330951}
+  - component: {fileID: 4079395073037400507}
   m_Layer: 0
-  m_Name: Enemy-Huge
+  m_Name: Huge
   m_TagString: Huge
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -73,6 +74,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 796aad014e2107342a60ed88af81c745, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &277032728642497707
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6789807276042294309}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8becac9e7bbfa23499f39c51d983b014, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hugeEnemyPrefab: {fileID: 0}
+  speedIncrease: 1
+  speed: 5
 --- !u!212 &4170603782493460694
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -125,15 +141,24 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &-6667189743471330951
-MonoBehaviour:
+--- !u!50 &4079395073037400507
+Rigidbody2D:
+  serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6789807276042294309}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8becac9e7bbfa23499f39c51d983b014, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0

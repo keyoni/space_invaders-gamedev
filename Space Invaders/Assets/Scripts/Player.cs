@@ -25,14 +25,13 @@ public class Player : MonoBehaviour
             // todo - trigger a "shoot" on the animator
             // playerAnimator.SetTrigger(Shoot);
             GameObject shot = Instantiate(bulletPrefab, shootOffsetTransform.position, Quaternion.identity);
-            Debug.Log("Bang!");
+            //Debug.Log("Bang!");
 
             Destroy(shot, 3f);
         }
 
         
         float inputX = Input.GetAxis("Horizontal");
-      
 
         Vector3 movement = new Vector3(speed * inputX,  0,0);
 

@@ -13,7 +13,7 @@ public class Enemy: MonoBehaviour
     private void Start()
     {
         //nemyAnimator = GetComponent<Animator>();
-        _enemyType = tag;
+        _enemyType = name;
         _currentEnemy = GetComponent<GameObject>();
     }
 
