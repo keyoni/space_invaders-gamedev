@@ -9,8 +9,7 @@ public class Boundary : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        Debug.Log("*****WE HIT THE BOUND!!!!!!!!!");
-        
+
         if (col.CompareTag("Enemy"))
         {
             BoundHit?.Invoke();

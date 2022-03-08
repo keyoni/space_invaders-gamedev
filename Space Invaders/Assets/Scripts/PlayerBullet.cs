@@ -7,7 +7,7 @@ public class PlayerBullet : MonoBehaviour
 {
     public float speed = 5;
     public static event Action<String> EnemyDeath;
-    public static event Action<GameObject> BarrierHit;
+    //public static event Action<GameObject> BarrierHit;
     //-----------------------------------------------------------------------------
     void Start()
     {
@@ -27,7 +27,7 @@ public class PlayerBullet : MonoBehaviour
         // todo - move trigger death animation on enemy death action
         //enemyAnimator.SetTrigger(Death);
   
-        Debug.Log($"Ouch! Said {hit} ");
+        //Debug.Log($"Ouch! Said {hit} ");
         if(!collision.collider.CompareTag("Barrier"))
         {
 

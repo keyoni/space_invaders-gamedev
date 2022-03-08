@@ -12,11 +12,14 @@ public class ScoreTracker : MonoBehaviour
     public TextMeshProUGUI score;
 
     public static event Action KillCountHit;
+    public static event Action<int> NewHighScore;
+    public static event Action<int> TotalKills;
     // Start is called before the first frame update
     void Start()
     {
         PlayerBullet.EnemyDeath += AddScore;
         PlayerBullet.EnemyDeath += EnemyKillsUpdate;
+        BottomBoundary.BottomBoundHit += GameOver;
     }
 
     // Update is called once per frame
@@ -47,6 +50,10 @@ public class ScoreTracker : MonoBehaviour
             _currentScore += randomNum;
         }
 
+        if (_currentScore > PlayerPrefs.GetInt("HighScore"))
+        {
+            NewHighScore?.Invoke(_currentScore);
+        }
         score.text = _currentScore.ToString("0000");
     }
     
@@ -58,5 +65,10 @@ public class ScoreTracker : MonoBehaviour
         {
             KillCountHit?.Invoke();
         }
+    }
+
+    private void GameOver()
+    {
+        TotalKills?.Invoke(_currentKills);
     }
 }

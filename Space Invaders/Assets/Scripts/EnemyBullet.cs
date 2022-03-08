@@ -7,8 +7,18 @@ public class EnemyBullet : MonoBehaviour
 {
     public float speed = 5;
 
-    public static event Action<GameObject> PlayerKill;
+    //public static event Action<GameObject> PlayerKill;
+    public static event Action BulletDestroyed;
 
+    
+    void OnEnable() {
+        GameObject[] friendlyFire = GameObject.FindGameObjectsWithTag("Enemy");
+
+        foreach (GameObject obj in friendlyFire) {
+            Physics2D.IgnoreCollision(obj.GetComponent<Collider2D>(), GetComponent<Collider2D>()); 
+        }
+        
+    }
     //-----------------------------------------------------------------------------
     void Start()
     {
@@ -23,25 +33,36 @@ public class EnemyBullet : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        String hit = collision.collider.name;
+        String hit = collision.collider.tag;
 
         // todo - move trigger death animation on enemy death action
         //enemyAnimator.SetTrigger(Death);
 
-        Debug.Log($"Ouch! Said {hit} ");
-        if (!collision.collider.CompareTag("Barrier"))
+        //Debug.Log($"Ouch! Said {hit} ");
+       if (hit.Contains("Player"))
+       {
+           // todo - player death action
+           
+           Destroy(collision.gameObject);
+           Destroy(gameObject);
+       
+       }
+       else if (hit.Contains("Barrier"))
+       { 
+        
+           Destroy(gameObject);
+          
+       }
+        else if (hit == "Enemy")
         {
-
-            if (hit == "Player")
-            {
-                // todo - player death action
-            }
-
-            Destroy(collision.gameObject);
-            Destroy(gameObject);
-
+            Physics2D.IgnoreCollision(collision.collider, gameObject.GetComponent<Collider2D>());
         }
 
     }
 
+    private void OnDestroy()
+    {
+        BulletDestroyed?.Invoke();
+        
+    }
 }

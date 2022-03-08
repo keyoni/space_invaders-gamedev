@@ -1,6 +1,6 @@
 using UnityEngine;
 using UnityEngine.Serialization;
-
+using Random = UnityEngine.Random;
 public class EnemyBlock : MonoBehaviour
 {
     public float timerMax = 0.5f;
@@ -16,11 +16,15 @@ public class EnemyBlock : MonoBehaviour
     public GameObject enemyHugePrefab;
 
     public GameObject rowPlaceHolder;
-
+    public GameObject enemyBulletPrefab;
+    
     [FormerlySerializedAs("_leftPlaceholder")] public GameObject leftPlaceholder;
     [FormerlySerializedAs("_rightPlaceholder")] public GameObject rightPlaceholder;
     private float _hugeEnemySpeed;
     private int _numberOfEnemyBullets = 1;
+    private int _currentNumOfEnemyBullets = 0;
+    private Vector3 _shootingEnemyPoint = Vector3.down;
+    
 
     public int numberOfColumns = 10;
     private bool _down;
@@ -34,6 +38,7 @@ public class EnemyBlock : MonoBehaviour
         ScoreTracker.KillCountHit += SpawnHugeEnemy;
         PlayerBullet.EnemyDeath += SpeedUp;
         ScoreTracker.KillCountHit += IncreaseEnemyBullets;
+        EnemyBullet.BulletDestroyed += DecreaseCurrentEnemyBullets;
     }
 
     // Update is called once per frame
@@ -52,6 +57,8 @@ public class EnemyBlock : MonoBehaviour
         if (_timer > 0)
         {
             _timer -= Time.deltaTime;
+            //Todo REMOVE and MOVE eLSEWHERe
+            RandomEnemyFires();
         }
         else
         {
@@ -115,12 +122,14 @@ public class EnemyBlock : MonoBehaviour
         }
     }
 
+    // When hits side of screen
     private void DirectionSwitch()
     {
         _xMove = -_xMove;
         _yMove = -0.5f;
     }
 
+    //Spawn Huge Enemy
     private void SpawnHugeEnemy()
     {
         var placeholder = Random.Range(0, 1);
@@ -143,7 +152,7 @@ public class EnemyBlock : MonoBehaviour
         hugeEnemyShip.GetComponent<HugeEnemy>().SetIsVisible(true);
     }
 
-    //Increase speed everytime anu enemy dies
+    //Increase speed everytime any enemy dies
     private void SpeedUp(string enemyType)
     {
         _xMove += speedIncrease;
@@ -153,5 +162,26 @@ public class EnemyBlock : MonoBehaviour
     private void IncreaseEnemyBullets()
     {
         _numberOfEnemyBullets++;
+    }
+
+    private void DecreaseCurrentEnemyBullets()
+    {
+        _currentNumOfEnemyBullets--;
+    }
+
+    private void RandomEnemyFires()
+    {
+        if (_currentNumOfEnemyBullets < _numberOfEnemyBullets)
+        {
+            Debug.Log("PEW!!");
+            Transform[] aliveEnemies = gameObject.GetComponentsInChildren<Transform>();
+            int rand = Random.Range(0, aliveEnemies.Length);
+
+            GameObject bullet =
+                Instantiate(enemyBulletPrefab, aliveEnemies[rand].position + Vector3.down,
+                    Quaternion.identity);
+            Destroy(bullet,5f);
+            _currentNumOfEnemyBullets++;
+        }
     }
 }
