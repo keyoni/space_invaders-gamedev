@@ -20,7 +20,7 @@ public class EnemyBlock : MonoBehaviour
     [FormerlySerializedAs("_leftPlaceholder")] public GameObject leftPlaceholder;
     [FormerlySerializedAs("_rightPlaceholder")] public GameObject rightPlaceholder;
     private float _hugeEnemySpeed;
-
+    private int _numberOfEnemyBullets = 1;
 
     public int numberOfColumns = 10;
     private bool _down;
@@ -32,7 +32,8 @@ public class EnemyBlock : MonoBehaviour
         EnemySpawn();
         Boundary.BoundHit += DirectionSwitch;
         ScoreTracker.KillCountHit += SpawnHugeEnemy;
-        Bullet.EnemyDeath += SpeedUp;
+        PlayerBullet.EnemyDeath += SpeedUp;
+        ScoreTracker.KillCountHit += IncreaseEnemyBullets;
     }
 
     // Update is called once per frame
@@ -147,5 +148,10 @@ public class EnemyBlock : MonoBehaviour
     {
         _xMove += speedIncrease;
         _hugeEnemySpeed += speedIncrease;
+    }
+
+    private void IncreaseEnemyBullets()
+    {
+        _numberOfEnemyBullets++;
     }
 }

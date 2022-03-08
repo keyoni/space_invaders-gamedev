@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8051623360855686968}
   - component: {fileID: 2088831434525488788}
   - component: {fileID: 1188123884073362826}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: B_Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -74,7 +74,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: -9095717837082945937, guid: 207ee8102dd4143d288186ef0be518ee, type: 3}
   m_Color: {r: 0, g: 0.5322423, b: 1, a: 1}
   m_FlipX: 0
@@ -114,6 +114,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c28ab8964ffdf94a9a8a42ce4776384, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scaleBy: 0.2
 --- !u!1 &621148639322333934
 GameObject:
   m_ObjectHideFlags: 0
@@ -123,7 +124,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2176150452307004748}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Barrier
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -160,7 +161,7 @@ GameObject:
   - component: {fileID: 4263452043833035320}
   - component: {fileID: 2990498400501299218}
   - component: {fileID: 4101623151273881337}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: B_Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -222,7 +223,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: -9095717837082945937, guid: 207ee8102dd4143d288186ef0be518ee, type: 3}
   m_Color: {r: 0, g: 0.5322423, b: 1, a: 1}
   m_FlipX: 0
@@ -262,6 +263,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c28ab8964ffdf94a9a8a42ce4776384, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scaleBy: 0.2
 --- !u!1 &7337407610261386533
 GameObject:
   m_ObjectHideFlags: 0
@@ -274,7 +276,7 @@ GameObject:
   - component: {fileID: 3919445798744320324}
   - component: {fileID: 5429846635816062131}
   - component: {fileID: 558498991276559931}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: B_Center
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -336,7 +338,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 0, g: 0.5322423, b: 1, a: 1}
   m_FlipX: 0
@@ -386,3 +388,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c28ab8964ffdf94a9a8a42ce4776384, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scaleBy: 0.2

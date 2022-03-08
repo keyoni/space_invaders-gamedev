@@ -3,7 +3,7 @@ using UnityEngine;
 
 // Technique for making sure there isn't a null reference during runtime if you are going to use get component
 [RequireComponent(typeof(Rigidbody2D))]
-public class Bullet : MonoBehaviour
+public class PlayerBullet : MonoBehaviour
 {
     public float speed = 5;
     public static event Action<String> EnemyDeath;

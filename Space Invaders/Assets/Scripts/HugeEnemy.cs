@@ -17,12 +17,12 @@ public class HugeEnemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Bullet.EnemyDeath += SpeedUp;
+        PlayerBullet.EnemyDeath += SpeedUp;
     }
 
     private void OnDestroy()
     {
-        Bullet.EnemyDeath -= SpeedUp;
+        PlayerBullet.EnemyDeath -= SpeedUp;
     }
 
     // Update is called once per frame

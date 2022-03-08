@@ -15,8 +15,8 @@ public class ScoreTracker : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Bullet.EnemyDeath += AddScore;
-        Bullet.EnemyDeath += EnemyKillsUpdate;
+        PlayerBullet.EnemyDeath += AddScore;
+        PlayerBullet.EnemyDeath += EnemyKillsUpdate;
     }
 
     // Update is called once per frame

@@ -86,7 +86,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8becac9e7bbfa23499f39c51d983b014, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hugeEnemyPrefab: {fileID: 0}
   speedIncrease: 1
   speed: 5
 --- !u!212 &4170603782493460694
@@ -129,7 +128,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 0.8418684, g: 0, b: 1, a: 1}
   m_FlipX: 0
