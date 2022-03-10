@@ -57,7 +57,7 @@ public class EnemyBlock : MonoBehaviour
         if (_timer > 0)
         {
             _timer -= Time.deltaTime;
-            //Todo REMOVE and MOVE eLSEWHERe
+            //Todo Move To Better Spot
             RandomEnemyFires();
         }
         else

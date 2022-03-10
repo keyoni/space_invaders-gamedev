@@ -27,7 +27,7 @@ public class Player : MonoBehaviour
             GameObject shot = Instantiate(bulletPrefab, shootOffsetTransform.position, Quaternion.identity);
             //Debug.Log("Bang!");
 
-            Destroy(shot, 3f);
+            Destroy(shot, 10f);
         }
 
         

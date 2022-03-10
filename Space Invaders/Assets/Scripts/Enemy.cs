@@ -12,9 +12,10 @@ public class Enemy: MonoBehaviour
 
     private void Start()
     {
-        //nemyAnimator = GetComponent<Animator>();
+        _enemyAnimator = GetComponent<Animator>();
         _enemyType = name;
         _currentEnemy = GetComponent<GameObject>();
+        //PlayerBullet.EnemyDeath += DeathAnimate;
     }
 
     //-----------------------------------------------------------------------------
@@ -27,6 +28,12 @@ public class Enemy: MonoBehaviour
         //                                                         
         // EnemyDeath?.Invoke(_enemyType);
         // Destroy(_currentEnemy);
+    }
+
+    public void DeathAnimate(String enemyType)
+    {
+        Debug.Log("I was hit!!!");
+        _enemyAnimator.SetTrigger(Death);
     }
 
     

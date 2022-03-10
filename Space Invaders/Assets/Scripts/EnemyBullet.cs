@@ -37,22 +37,20 @@ public class EnemyBullet : MonoBehaviour
 
         // todo - move trigger death animation on enemy death action
         //enemyAnimator.SetTrigger(Death);
-
-        //Debug.Log($"Ouch! Said {hit} ");
-       if (hit.Contains("Player"))
-       {
-           // todo - player death action
-           
-           Destroy(collision.gameObject);
-           Destroy(gameObject);
-       
-       }
-       else if (hit.Contains("Barrier"))
-       { 
         
-           Destroy(gameObject);
+        if (hit.Contains("Player"))
+        {
+            // todo - player death action
+           
+            Destroy(collision.gameObject);
+            Destroy(gameObject);
+       
+        }
+        else if (hit.Contains("Barrier"))
+        {
+            Destroy(gameObject);
           
-       }
+        }
         else if (hit == "Enemy")
         {
             Physics2D.IgnoreCollision(collision.collider, gameObject.GetComponent<Collider2D>());
