@@ -7,7 +7,8 @@ public class Enemy: MonoBehaviour
     private static readonly int Death = Animator.StringToHash("Death");
     private String _enemyType;
     private GameObject _currentEnemy;
-    
+    private static readonly int Shoot = Animator.StringToHash("Shoot");
+
     //public static event Action<String> EnemyDeath;
 
     private void Start()
@@ -36,5 +37,8 @@ public class Enemy: MonoBehaviour
         _enemyAnimator.SetTrigger(Death);
     }
 
-    
+    public void ShootAnimate()
+    {
+        _enemyAnimator.SetTrigger(Shoot);
+    }
 }
