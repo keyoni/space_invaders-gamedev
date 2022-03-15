@@ -10,11 +10,13 @@ public class Player : MonoBehaviour
     private Animator _playerAnimator;
     private static readonly int Shoot = Animator.StringToHash("Shoot");
     public float speed = 5f;
+    private static readonly int Death = Animator.StringToHash("Death");
 
     //-----------------------------------------------------------------------------
     void Start()
     {
-       // playerAnimator = GetComponent<Animator>();
+        _playerAnimator = GetComponent<Animator>(); 
+        // MenuLogic.MenuScreenClose += UnIdleAnimate;
     }
 
     //-----------------------------------------------------------------------------
@@ -23,11 +25,11 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             // todo - trigger a "shoot" on the animator
-            // playerAnimator.SetTrigger(Shoot);
+            _playerAnimator.SetTrigger(Shoot);
             GameObject shot = Instantiate(bulletPrefab, shootOffsetTransform.position, Quaternion.identity);
             //Debug.Log("Bang!");
 
-            Destroy(shot, 3f);
+            Destroy(shot, 10f);
         }
 
         
@@ -40,4 +42,10 @@ public class Player : MonoBehaviour
         transform.Translate(movement);
 
     }
+
+    public void DeathAnimate()
+    {
+        _playerAnimator.SetTrigger(Death);
+    }
+
 }

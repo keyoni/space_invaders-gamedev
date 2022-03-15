@@ -7,10 +7,18 @@ public class PlayerBullet : MonoBehaviour
 {
     public float speed = 5;
     public static event Action<String> EnemyDeath;
+
+    public static event Action<GameObject> EnemyDeathAnimate;
+
+    private MeshRenderer _mesh;
+
+    private BoxCollider2D _collider2D;
     //public static event Action<GameObject> BarrierHit;
     //-----------------------------------------------------------------------------
     void Start()
     {
+        _mesh = GetComponent<MeshRenderer>();
+        _collider2D = GetComponent<BoxCollider2D>();
         Fire();
     }
 
@@ -33,15 +41,16 @@ public class PlayerBullet : MonoBehaviour
 
             if (hit != "Player")
             {
+                _mesh.enabled = false;
+                _collider2D.enabled = false;
+                
+                //Effects Score and Enemy Speed
+                EnemyDeathAnimate?.Invoke(collision.gameObject);
                 EnemyDeath?.Invoke(collision.collider.name);
             }
-            else if (hit == "Player")
-            {
-                // todo - player death action
-            }
-
-            Destroy(collision.gameObject);
-            Destroy(gameObject);
+            //Destroys Enemy and self
+            Destroy(collision.gameObject,1f);
+            Destroy(gameObject,5f);
           
         }
 

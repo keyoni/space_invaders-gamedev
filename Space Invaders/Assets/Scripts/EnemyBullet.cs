@@ -9,7 +9,7 @@ public class EnemyBullet : MonoBehaviour
 
     //public static event Action<GameObject> PlayerKill;
     public static event Action BulletDestroyed;
-
+    public static event Action PlayerDied;
     
     void OnEnable() {
         GameObject[] friendlyFire = GameObject.FindGameObjectsWithTag("Enemy");
@@ -37,22 +37,22 @@ public class EnemyBullet : MonoBehaviour
 
         // todo - move trigger death animation on enemy death action
         //enemyAnimator.SetTrigger(Death);
-
-        //Debug.Log($"Ouch! Said {hit} ");
-       if (hit.Contains("Player"))
-       {
-           // todo - player death action
-           
-           Destroy(collision.gameObject);
-           Destroy(gameObject);
-       
-       }
-       else if (hit.Contains("Barrier"))
-       { 
         
-           Destroy(gameObject);
+        if (hit.Contains("Player"))
+        {
+            // todo - player death action
+            collision.gameObject.GetComponent<Player>().DeathAnimate();
+           
+            Destroy(collision.gameObject,1f); 
+            PlayerDied?.Invoke();
+            Destroy(gameObject);
+       
+        }
+        else if (hit.Contains("Barrier"))
+        {
+            Destroy(gameObject);
           
-       }
+        }
         else if (hit == "Enemy")
         {
             Physics2D.IgnoreCollision(collision.collider, gameObject.GetComponent<Collider2D>());

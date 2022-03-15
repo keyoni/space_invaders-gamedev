@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
@@ -28,6 +29,7 @@ public class EnemyBlock : MonoBehaviour
 
     public int numberOfColumns = 10;
     private bool _down;
+    public static event Action<GameObject> EnemyShoot;
 
 
     // Start is called before the first frame update
@@ -57,7 +59,7 @@ public class EnemyBlock : MonoBehaviour
         if (_timer > 0)
         {
             _timer -= Time.deltaTime;
-            //Todo REMOVE and MOVE eLSEWHERe
+            //Todo Move To Better Spot
             RandomEnemyFires();
         }
         else
@@ -137,13 +139,13 @@ public class EnemyBlock : MonoBehaviour
         GameObject hugeEnemyShip;
         if (placeholder == 1)
         {
-            hugeEnemyShip = Instantiate(enemyHugePrefab, leftPlaceholder.transform.position + Vector3.right,
+            hugeEnemyShip = Instantiate(enemyHugePrefab, leftPlaceholder.transform.position + new Vector3(3,0,0),
                 Quaternion.identity);
             hugeEnemyShip.GetComponent<HugeEnemy>().SetDirection(1);
         }
         else
         {
-            hugeEnemyShip = Instantiate(enemyHugePrefab, rightPlaceholder.transform.position + Vector3.left, 
+            hugeEnemyShip = Instantiate(enemyHugePrefab, rightPlaceholder.transform.position + new Vector3(-3,0,0), 
                 Quaternion.identity);
             hugeEnemyShip.GetComponent<HugeEnemy>().SetDirection(-1);
         }
@@ -176,6 +178,7 @@ public class EnemyBlock : MonoBehaviour
             Debug.Log("PEW!!");
             Transform[] aliveEnemies = gameObject.GetComponentsInChildren<Transform>();
             int rand = Random.Range(0, aliveEnemies.Length);
+            //EnemyShoot?.Invoke(aliveEnemies[rand].gameObject);
 
             GameObject bullet =
                 Instantiate(enemyBulletPrefab, aliveEnemies[rand].position + Vector3.down,
