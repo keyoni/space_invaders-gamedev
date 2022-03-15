@@ -42,8 +42,9 @@ public class EnemyBullet : MonoBehaviour
         {
             // todo - player death action
             collision.gameObject.GetComponent<Player>().DeathAnimate();
+           
+            Destroy(collision.gameObject,1f); 
             PlayerDied?.Invoke();
-            Destroy(collision.gameObject,1f);
             Destroy(gameObject);
        
         }

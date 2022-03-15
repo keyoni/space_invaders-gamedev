@@ -4,14 +4,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Credits : MonoBehaviour
+public class LoadMainMenu : MonoBehaviour
 {
     
-    public String creditsScene;
+    public String menuScene;
     // Start is called before the first frame update
     void Start()
     {
-        EnemyBullet.PlayerDied += OpenCreditsStart;
+        StartCoroutine(OpenMenu());
     }
 
     // Update is called once per frame
@@ -20,18 +20,13 @@ public class Credits : MonoBehaviour
         
     }
     
-    public void OpenCreditsStart()
-    {
-        StartCoroutine(OpenCredits());
-    }
-
     // Help From :https://stackoverflow.com/questions/62553025/unity-load-scene-after-two-seconds
-    IEnumerator OpenCredits()
+    IEnumerator OpenMenu()
     {
    
         //yield on a new YieldInstruction that waits for 3 seconds.
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(5);
 
-        SceneManager.LoadScene(creditsScene, LoadSceneMode.Single);
+        SceneManager.LoadScene(menuScene, LoadSceneMode.Single);
     }
 }
