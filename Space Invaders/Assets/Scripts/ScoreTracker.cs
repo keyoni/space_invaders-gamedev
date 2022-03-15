@@ -20,6 +20,7 @@ public class ScoreTracker : MonoBehaviour
         PlayerBullet.EnemyDeath += AddScore;
         PlayerBullet.EnemyDeath += EnemyKillsUpdate;
         BottomBoundary.BottomBoundHit += GameOver;
+        EnemyBullet.PlayerDied += GameOver;
     }
 
     // Update is called once per frame

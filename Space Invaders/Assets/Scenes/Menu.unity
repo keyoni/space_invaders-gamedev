@@ -123,6 +123,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!95 &104623482 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 9032397221276608838, guid: b690a46b89acf2146a1ba0380587bebc, type: 3}
+  m_PrefabInstance: {fileID: 1347965620}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &390245082
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -180,6 +185,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e89a414f7891e104ab74b63f0741f618, type: 3}
+--- !u!95 &616952917 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 2994966943264903329, guid: d0a60454efbd35c4d92d569dbd1f90f3, type: 3}
+  m_PrefabInstance: {fileID: 1879376158}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &694882380
 GameObject:
   m_ObjectHideFlags: 0
@@ -282,6 +292,11 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!95 &782914246 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 7860550185920676212, guid: 6a669b66eb0f41249ae4153ca50a3a5f, type: 3}
+  m_PrefabInstance: {fileID: 2033950229}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &829080681
 GameObject:
   m_ObjectHideFlags: 0
@@ -725,7 +740,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1089624956}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1968112416}
+        m_TargetAssemblyTypeName: MenuLogic, Assembly-CSharp
+        m_MethodName: OpenMainGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1089624956
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -764,6 +791,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1089624952}
   m_CullTransparentMesh: 1
+--- !u!95 &1329357696 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 3924270870989135013, guid: e89a414f7891e104ab74b63f0741f618, type: 3}
+  m_PrefabInstance: {fileID: 390245082}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1347965620
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -925,7 +957,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1474826608}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1968112416}
+        m_TargetAssemblyTypeName: MenuLogic, Assembly-CSharp
+        m_MethodName: OpenCredits
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1474826608
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1116,6 +1160,7 @@ GameObject:
   - component: {fileID: 1968112413}
   - component: {fileID: 1968112415}
   - component: {fileID: 1968112414}
+  - component: {fileID: 1968112416}
   m_Layer: 5
   m_Name: Root
   m_TagString: Untagged
@@ -1191,6 +1236,25 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &1968112416
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1968112412}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4f2a95f6ac58b94682b272be8b62274, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameScene: SpaceInvaders
+  creditsScene: Credits
+  player: {fileID: 2093346584}
+  small: {fileID: 782914246}
+  mid: {fileID: 1329357696}
+  large: {fileID: 616952917}
+  huge: {fileID: 104623482}
 --- !u!1001 &1974908316
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1440,6 +1504,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6a669b66eb0f41249ae4153ca50a3a5f, type: 3}
+--- !u!95 &2093346584 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 7036561206501670376, guid: 46f7c04cfd4b73e49a865596061b9ab8, type: 3}
+  m_PrefabInstance: {fileID: 1974908316}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7483047650838334521
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1447,6 +1516,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1967337138951754947, guid: ebe99368f4e99de4692669b843f5ac8d, type: 3}
+      propertyPath: m_Volume
+      value: 0.53
+      objectReference: {fileID: 0}
     - target: {fileID: 4548391031728642555, guid: ebe99368f4e99de4692669b843f5ac8d, type: 3}
       propertyPath: m_RootOrder
       value: 8

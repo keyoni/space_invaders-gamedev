@@ -8,6 +8,7 @@ public class Enemy: MonoBehaviour
     private String _enemyType;
     private GameObject _currentEnemy;
     private static readonly int Shoot = Animator.StringToHash("Shoot");
+    private static readonly int Idle = Animator.StringToHash("Idle");
 
     //public static event Action<String> EnemyDeath;
 
@@ -17,6 +18,8 @@ public class Enemy: MonoBehaviour
         _enemyType = name;
         _currentEnemy = GetComponent<GameObject>();
         //PlayerBullet.EnemyDeath += DeathAnimate;
+        MenuLogic.MenuScreen += IdleAnimate;
+        //MenuLogic.menuScreenClose += UnIdleAnimate;
     }
 
     //-----------------------------------------------------------------------------
@@ -41,4 +44,16 @@ public class Enemy: MonoBehaviour
     {
         _enemyAnimator.SetTrigger(Shoot);
     }
+    
+    public void IdleAnimate()
+    {
+        Debug.Log("Idle Called");
+        _enemyAnimator.SetTrigger(Idle); 
+    }
+
+    public void UnIdleAnimate()
+    {
+        _enemyAnimator.ResetTrigger(Idle); 
+    }
 }
+

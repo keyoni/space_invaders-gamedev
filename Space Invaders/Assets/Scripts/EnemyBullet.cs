@@ -9,7 +9,7 @@ public class EnemyBullet : MonoBehaviour
 
     //public static event Action<GameObject> PlayerKill;
     public static event Action BulletDestroyed;
-
+    public static event Action PlayerDied;
     
     void OnEnable() {
         GameObject[] friendlyFire = GameObject.FindGameObjectsWithTag("Enemy");
@@ -42,6 +42,7 @@ public class EnemyBullet : MonoBehaviour
         {
             // todo - player death action
             collision.gameObject.GetComponent<Player>().DeathAnimate();
+            PlayerDied?.Invoke();
             Destroy(collision.gameObject,1f);
             Destroy(gameObject);
        

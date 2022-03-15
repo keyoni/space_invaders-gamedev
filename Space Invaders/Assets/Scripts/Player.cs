@@ -16,6 +16,8 @@ public class Player : MonoBehaviour
     void Start()
     {
         _playerAnimator = GetComponent<Animator>();
+        MenuLogic.MenuScreen += IdleAnimate;
+        MenuLogic.MenuScreenClose += UnIdleAnimate;
     }
 
     //-----------------------------------------------------------------------------
@@ -45,5 +47,15 @@ public class Player : MonoBehaviour
     public void DeathAnimate()
     {
         _playerAnimator.SetTrigger(Death);
+    }
+
+    public void IdleAnimate()
+    {
+        _playerAnimator.SetTrigger("Idle"); 
+    }
+    
+    public void UnIdleAnimate()
+    {
+        _playerAnimator.ResetTrigger("Idle"); 
     }
 }
