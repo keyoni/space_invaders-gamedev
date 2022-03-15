@@ -18,8 +18,6 @@ public class Enemy: MonoBehaviour
         _enemyType = name;
         _currentEnemy = GetComponent<GameObject>();
         //PlayerBullet.EnemyDeath += DeathAnimate;
-        MenuLogic.MenuScreen += IdleAnimate;
-        //MenuLogic.menuScreenClose += UnIdleAnimate;
     }
 
     //-----------------------------------------------------------------------------

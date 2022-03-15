@@ -9,8 +9,7 @@ public class MenuLogic : MonoBehaviour
     public String gameScene;
 
     public String creditsScene;
-
-    public static event Action MenuScreen;
+    
 
     public static event Action MenuScreenClose;
 
@@ -26,7 +25,7 @@ public class MenuLogic : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        MenuScreen?.Invoke();
+        //MenuScreen?.Invoke();
         
         player.SetTrigger("Idle");
         mid.SetTrigger("Idle");
